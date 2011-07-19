@@ -1,1 +1,0 @@
-/opt/mongodb-osx-x86_64-1.8.0/bin/mongod --dbpath ./db/mongodb/
