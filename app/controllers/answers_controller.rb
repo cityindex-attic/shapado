@@ -115,6 +115,19 @@ class AnswersController < ApplicationController
         format.js {render :json => {:success => false, :message => flash.now[:error] }.to_json }
       end
     end
+    rescue MongoMapper::DocumentNotValid 
+        respond_to do |format|
+           errors = @answer.errors
+           errors.add(:answer, $!)
+           errors.merge!(@answer.user.errors) if @answer.user.anonymous && !@answer.user.valid?
+           puts errors.full_messages
+    
+           flash.now[:error] = errors.full_messages
+           format.html{redirect_to question_path(@question)}
+           format.json { render :json => errors, :status => :unprocessable_entity }
+           format.js {render :json => {:success => false, :message => flash.now[:error] }.to_json }
+        end
+    end
   end
 
   def edit
