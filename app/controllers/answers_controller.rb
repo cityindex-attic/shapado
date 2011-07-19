@@ -126,7 +126,6 @@ class AnswersController < ApplicationController
            format.html{redirect_to question_path(@question)}
            format.json { render :json => errors, :status => :unprocessable_entity }
            format.js {render :json => {:success => false, :message => flash.now[:error] }.to_json }
-        end
     end
   end
 
