@@ -15,3 +15,5 @@ public/javascripts/jsMath/fonts/
 .sass-cache
 *.kdev4
 .bundle
+
+db/mongodb/mongod.lock
